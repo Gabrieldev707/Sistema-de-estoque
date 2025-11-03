@@ -6,7 +6,7 @@ export function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(null)
   const [carregando, setCarregando] = useState(true) // Começa como true para verificar localStorage
 
-  // ⭐ USUÁRIOS PRÉ-CADASTRADOS
+  // USUÁRIOS PRÉ-CADASTRADOSaa
   const usuariosCadastrados = [
     { 
       usuario: "pai", 
