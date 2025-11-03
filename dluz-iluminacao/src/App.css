@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+}
+
+.app {
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+body,
+html,
+#root,
+.app {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100%;
+}
