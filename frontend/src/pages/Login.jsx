@@ -1,4 +1,4 @@
-import './Login.css'
+import './login.css'
 import { useAuth } from '../context/AuthContext'
 import { useState } from 'react'
 
