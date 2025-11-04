@@ -1,38 +1,31 @@
-# /Sistema-de-estoque/docker-compose.yml
-# Este é o "maestro" que gerencia os dois serviços
-
-version: '3.8'
-
 services:
-  
-  # Serviço 1: O Frontend (React + Nginx)
   frontend:
-    # Damos um nome para o contêiner ficar fácil de achar
-    container_name: sistema-estoque-frontend
-    
-    # 'build:' diz ao Docker como construir esta imagem
+    container_name: frontend-app
     build:
-      # 'context' é a pasta onde o Docker deve procurar os arquivos
       context: ./frontend
-      # 'dockerfile' é o nome da receita dentro daquela pasta
       dockerfile: Dockerfile
-    
-    # 'ports:' mapeia a porta do seu PC (fora) para a porta do contêiner (dentro)
     ports:
-      # 8080 (seu PC) -> 80 (do Nginx dentro do contêiner)
       - "8080:80"
 
-  # Serviço 2: O Backend (Node.js API)
   backend:
-    container_name: sistema-estoque-backend
+    container_name: backend-api
     build:
-      # Aponta para a pasta ./backend e seu Dockerfile
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      # 4000 (seu PC) -> 4000 (da API Node.js dentro do contêiner)
       - "4000:4000"
-    
-    # Aqui você adicionará as variáveis de ambiente (ex: do banco de dados)
-    # environment:
-    #   - DATABASE_URL=postgres://...
+    environment:
+      MONGODB_URL: mongodb://mongo:27017/dluzdatabase
+    depends_on:
+      - mongo
+
+  mongo:
+    container_name: database-mongo
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

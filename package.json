@@ -1,0 +1,32 @@
+{
+  "name": "sistema-de-estoque",
+  "version": "1.0.0",
+  "description": "Sistema de estoque para empresas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "dev:db": "docker-compose up mongo",
+    
+    "dev:backend": "npm run dev --prefix backend",
+    
+    "dev:frontend": "npm run dev --prefix frontend",
+    
+    "dev": "concurrently \"npm:dev:db\" \"npm:dev:backend\" \"npm:dev:frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gabrieldev707/Sistema-de-estoque.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Gabrieldev707/Sistema-de-estoque/issues"
+  },
+  "homepage": "https://github.com/Gabrieldev707/Sistema-de-estoque#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
