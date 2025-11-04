@@ -1,0 +1,8 @@
+# /frontend/.dockerignore
+
+# Ignora as dependências locais (o Docker vai rodar o npm install lá dentro)
+node_modules
+
+# Ignora o build local (o Docker vai criar o seu)
+dist
+.vite
