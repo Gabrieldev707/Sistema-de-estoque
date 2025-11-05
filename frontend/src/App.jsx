@@ -8,11 +8,8 @@ import Cadastrar from './pages/Cadastrar'
 import Login from './pages/Login'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ProdutosProvider } from './context/ProdutosContext'
-
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 
-// 2. Crie um "Layout" para suas páginas protegidas
-// (Header, Navegação, e o "buraco" <Outlet /> onde as páginas vão entrar)
 function AppLayout() {
   return (
     <ProdutosProvider>
@@ -52,23 +49,14 @@ function ProtectedRoutes() {
     return <Navigate to="/login" replace />
   }
 
-
   return <AppLayout />
 }
 
-// 4. Componente principal que verifica autenticação
 function AppContent() {
-  // Não precisamos mais de 'useState' ou 'renderizarPagina'
-  // O <Routes> faz todo o trabalho!
   return (
     <Routes>
-      {/* Rota 1: A página de Login (pública) */}
-      <Route path="/login" element={<Login />} />
-
-      {/* Rota 2: O "ninho" de Rotas Protegidas */}
-      {/* Todas as rotas aqui dentro passarão pelo "Porteiro" <ProtectedRoutes /> */}
+      <Route path="/login" element={<Login />} />  
       <Route element={<ProtectedRoutes />}>
-        {/* Estas rotas serão renderizadas dentro do <Outlet /> do AppLayout */}
         <Route path="/" element={<Produtos />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/fornecedores" element={<Fornecedores />} />

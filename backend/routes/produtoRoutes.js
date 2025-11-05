@@ -6,7 +6,6 @@ router.get('/produtos', produtoController.getAllProdutos);
 
 router.post('/produtos', produtoController.createProduto);
 
-//query param
 router.get('/produtos/pesquisar', produtoController.searchProdutos);
 
 router.delete('/produtos/:id', produtoController.deleteProduto);

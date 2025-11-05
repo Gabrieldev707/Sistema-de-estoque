@@ -1,14 +1,10 @@
 import './login.css'
 import { useAuth } from '../context/AuthContext'
 import { useState } from 'react'
-
-// 1. Importe o useNavigate
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const { login, carregando } = useAuth()
-  
-  // 2. Inicialize o hook de navegação
   const navigate = useNavigate()
   
   const [credenciais, setCredenciais] = useState({
@@ -31,10 +27,7 @@ function Login() {
     if (!usuarioLogado) {
       setErro('Usuário ou senha incorretos!')
     } else {
-      // 3. A MÁGICA!
-      // Se o login foi um sucesso, navegue o usuário
-      // para a página principal.
-      navigate('/') // Ou '/produtos', o que você preferir
+      navigate('/') 
     }
   }
 
@@ -45,14 +38,10 @@ function Login() {
     })
   }
 
-  // O resto do seu JSX (formulário) continua
-  // exatamente o mesmo...
   return (
     <div className="login-container">
-      {/* ... seu formulário aqui ... */}
       <div className="login-card">
         <div className="login-header">
-            {/* CORREÇÃO DA IMAGEM: Remova o '/public' */}
             <img src="/LOGO.pdf.png" alt="Senz Iluminação & Acabamentos" className="logo" />
           <p><strong>Sistema de Controle de Estoque</strong></p>
         </div>

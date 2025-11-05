@@ -45,17 +45,13 @@ exports.getAllFornecedores = async (req, res) => {
 exports.deleteFornecedor = async (req, res) => {
   try {
     const { id } = req.params;
-
-    // 3. REGRA DE NEGÓCIO: Verifica se algum produto usa este fornecedor
     const produtos = await Produto.find({ fornecedor: id });
     if (produtos.length > 0) {
-      // 400 = Bad Request (Requisição inválida)
       return res.status(400).json({ 
         message: `Não é possível excluir. Este fornecedor está associado a ${produtos.length} produto(s).` 
       });
     }
 
-    // 4. Se não houver produtos, deleta o fornecedor
     const fornecedorDeletado = await Fornecedor.findByIdAndDelete(id);
 
     if (!fornecedorDeletado) {

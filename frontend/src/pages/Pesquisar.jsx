@@ -1,24 +1,18 @@
 import './Pages.css'
-// 1. Importe useState e useEffect
 import { useState, useEffect } from 'react'
 
-// Pega a URL da API do seu .env
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Pesquisar() {
-  // --- Estados da Busca ---
   const [termoBusca, setTermoBusca] = useState('');
   const [resultados, setResultados] = useState([]);
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState(null);
   const [buscaRealizada, setBuscaRealizada] = useState(false);
-
-  // --- 2. Estados copiados do Produtos.jsx (Para o Modal) ---
-  const [fornecedores, setFornecedores] = useState([]) // Para o dropdown
+  const [fornecedores, setFornecedores] = useState([]) 
   const [produtoParaEditar, setProdutoParaEditar] = useState(null)
   const [formEdicao, setFormEdicao] = useState({})
 
-  // 3. Busca os fornecedores (para o dropdown do modal)
   useEffect(() => {
     const fetchFornecedores = async () => {
       try {
@@ -27,14 +21,12 @@ function Pesquisar() {
         const data = await response.json()
         setFornecedores(data)
       } catch (err) {
-        // Não definimos o erro principal aqui, para não poluir a tela
         console.error(err.message)
       }
     }
     fetchFornecedores();
-  }, []) // [] = Roda só uma vez
+  }, [])
 
-  // --- Função de Busca ---
   const handleSearch = async (e) => {
     e.preventDefault(); 
     if (!termoBusca) {
@@ -60,9 +52,7 @@ function Pesquisar() {
     }
   };
 
-  // --- Função de Excluir (Como você já tinha) ---
   const handleExcluir = async (id) => {
-    // Usamos 'confirm' nativo, que é mais simples que um modal
     if (!window.confirm('Tem certeza que deseja excluir este produto?')) {
       return;
     }
@@ -74,18 +64,14 @@ function Pesquisar() {
       if (!response.ok) {
         throw new Error('Falha ao excluir produto.');
       }
-      // Remove o produto da lista de resultados
       setResultados(resultados.filter(p => p._id !== id));
     } catch (err) {
       setErro(err.message);
     }
   };
-
-  // --- 4. Funções de Edição (Copiadas do Produtos.jsx) ---
   
   const iniciarEdicao = (produto) => {
     setProdutoParaEditar(produto)
-    // Garante que o 'formEdicao' armazene apenas o ID do fornecedor
     setFormEdicao({
       ...produto,
       fornecedor: produto.fornecedor._id 
@@ -109,19 +95,15 @@ function Pesquisar() {
       }
       
       const produtoAtualizado = await response.json();
-
-      // 5. ATUALIZA A LISTA DE RESULTADOS
-      // Precisamos "re-popular" o fornecedor manualmente, 
-      // pois a API de PUT retorna o produto só com o ID.
       const fornecedorObj = fornecedores.find(f => f._id === produtoAtualizado.fornecedor);
       
       setResultados(resultados.map(p => 
         p._id === produtoAtualizado._id 
-          ? { ...produtoAtualizado, fornecedor: fornecedorObj } // Substitui o produto
+          ? { ...produtoAtualizado, fornecedor: fornecedorObj } 
           : p 
       ));
       
-      cancelarEdicao() // Fecha o modal
+      cancelarEdicao()
     } catch (err) {
       setErro(err.message)
     }
@@ -132,7 +114,6 @@ function Pesquisar() {
     setFormEdicao({})
   }
 
-  // --- Função para renderizar os resultados ---
   const renderizarResultados = () => {
     if (loading) {
       return (
@@ -142,7 +123,6 @@ function Pesquisar() {
       );
     }
 
-    // Mostra o erro principal da busca
     if (erro && !produtoParaEditar) {
       return <div className="mensagem erro">{erro}</div>;
     }
@@ -163,7 +143,6 @@ function Pesquisar() {
       );
     }
 
-    // Se temos resultados, mostramos a tabela!
     return (
       <div className="table-container">
         <table className="produtos-table">
@@ -182,12 +161,10 @@ function Pesquisar() {
               <tr key={produto._id}>
                 <td><strong>{produto.codigo}</strong></td>
                 <td>{produto.nome}</td>
-                {/* O '.populate()' do backend nos dá acesso a 'produto.fornecedor.nome' */}
                 <td>{produto.fornecedor?.nome || 'N/D'}</td>
                 <td>{produto.quantidade}</td>
                 <td>R$ {(produto.preco || 0).toFixed(2)}</td>
                 <td className="acoes-botoes">
-                  {/* 6. Botão de Editar agora chama o MODAL */}
                   <button 
                     onClick={() => iniciarEdicao(produto)} 
                     className="btn-editar"
@@ -213,7 +190,7 @@ function Pesquisar() {
     <div className="page-container">
       <h2>Pesquisar Produto</h2>
       
-      {/* Usamos <form> para que o "Enter" funcione */}
+
       <form onSubmit={handleSearch} className="search-container">
         <input 
           type="text" 
@@ -227,21 +204,17 @@ function Pesquisar() {
         </button>
       </form>
       
-      {/* Mostra o erro do modal de edição, se houver */}
       {erro && produtoParaEditar && (
          <div className="mensagem erro">{erro}</div>
       )}
 
-      {/* Onde os resultados (ou placeholders) são mostrados */}
       {renderizarResultados()}
 
-      {/* 7. JSX DO MODAL (Copiado do Produtos.jsx) */}
       {produtoParaEditar && (
         <div className="modal-overlay">
           <div className="modal">
             <h3>Editar Produto</h3>
             <form onSubmit={salvarEdicao}>
-              {/* (Input Código) */}
               <div className="form-group">
                 <label>Código do Produto *</label>
                 <input 
@@ -253,7 +226,6 @@ function Pesquisar() {
                 />
               </div>
 
-              {/* (Input Nome) */}
               <div className="form-group">
                 <label>Nome do Produto *</label>
                 <input 
@@ -265,12 +237,11 @@ function Pesquisar() {
                 />
               </div>
 
-              {/* (Select Fornecedor) */}
               <div className="form-group">
                 <label>Fornecedor *</label>
                 <select 
                   name="fornecedor"
-                  value={formEdicao.fornecedor} // O 'value' é o ID
+                  value={formEdicao.fornecedor}
                   onChange={(e) => setFormEdicao({...formEdicao, fornecedor: e.target.value})}
                   className="form-input"
                   required
@@ -284,7 +255,6 @@ function Pesquisar() {
                 </select>
               </div>
 
-              {/* (Input Quantidade) */}
               <div className="form-group">
                 <label>Quantidade em Estoque</label>
                 <input 
@@ -296,7 +266,6 @@ function Pesquisar() {
                 />
               </div>
 
-              {/* (Input Preço) */}
               <div className="form-group">
                 <label>Preço (R$)</label>
                 <input 
@@ -309,7 +278,6 @@ function Pesquisar() {
                 />
               </div>
 
-              {/* (Botões do Modal) */}
               <div className="modal-buttons">
                 <button type="button" className="btn-cancelar" onClick={cancelarEdicao}>
                   Cancelar

@@ -102,8 +102,6 @@ function Fornecedores() {
   if (fornecedorSelecionado) {
     return (
       <div className="page-container">
-
-        {/* --- CABEÇALHO ATUALIZADO --- */}
         <div className="cabecalho-fornecedor">
 
           <div className="cabecalho-botoes">
@@ -134,7 +132,6 @@ function Fornecedores() {
           </div>
 
         </div>
-        {/* --- FIM CABEÇALHO --- */}
 
         {loading ? (
           <div className="content-placeholder"><p>Carregando produtos...</p></div>

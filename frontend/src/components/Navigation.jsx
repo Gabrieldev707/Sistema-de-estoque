@@ -14,10 +14,7 @@ function Navigation() {
   return (
     <nav className="navigation">
       <div className="nav-container">
-        <ul>
-          {/* 3. Substitua <button> por <NavLink> */}
-          {/* O 'to' deve bater com os 'path' do seu App.jsx */}
-          
+        <ul>    
           <li>
             <NavLink 
               to="/produtos" 

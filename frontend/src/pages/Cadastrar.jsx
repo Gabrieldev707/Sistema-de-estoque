@@ -1,29 +1,21 @@
 import './Cadastrar.css'
-// 1. Importe useEffect (para carregar fornecedores)
 import { useState, useEffect } from 'react'
 
-// Pega a URL da API do seu .env (ex: VITE_API_URL=http://localhost:4000)
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Cadastrar() {
-  // --- Estados do Formulário de PRODUTO ---
   const [produtoFormData, setProdutoFormData] = useState({
     codigo: '',
     nome: '',
-    fornecedor: '', // Vai guardar o ID do fornecedor
+    fornecedor: '', 
     quantidade: '',
     preco: ''
   })
-  const [produtoMensagem, setProdutoMensagem] = useState('')
 
-  // --- Estados do Formulário de FORNECEDOR ---
+  const [produtoMensagem, setProdutoMensagem] = useState('')
   const [fornecedorNome, setFornecedorNome] = useState('')
   const [fornecedorMensagem, setFornecedorMensagem] = useState('')
-
-  // --- Estado da Lista de Fornecedores (para o Dropdown) ---
   const [fornecedores, setFornecedores] = useState([])
-
-  // --- Função para buscar fornecedores da API ---
   const fetchFornecedores = async () => {
     try {
       const response = await fetch(`${API_URL}/api/fornecedores`)
@@ -35,7 +27,6 @@ function Cadastrar() {
     }
   }
 
-  //  Buscar fornecedores quando o componente carregar
   useEffect(() => {
     fetchFornecedores()
   }, []) 
@@ -86,7 +77,6 @@ function Cadastrar() {
     }
 
     try {
-      // 4. CHAMA A API DO BACKEND
       const response = await fetch(`${API_URL}/api/fornecedores`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -100,9 +90,7 @@ function Cadastrar() {
 
       setFornecedorMensagem('Fornecedor cadastrado com sucesso! ✅')
       setFornecedorNome('')
-      
-      fetchFornecedores() 
-      
+      fetchFornecedores()      
       setTimeout(() => setFornecedorMensagem(''), 3000)
 
     } catch (error) {
@@ -119,11 +107,7 @@ function Cadastrar() {
 
   return (
     <div className="page-container">
-      
-      {/* Container principal que divide a tela em duas */}
       <div className="cadastrar-layout">
-
-        {/* Cadastrar Produto */}
         <div className="form-wrapper">
           <h2>Cadastrar Novo Produto</h2>
           
@@ -134,7 +118,6 @@ function Cadastrar() {
           )}
 
           <form onSubmit={handleProdutoSubmit} className="form-container">
-            {/* Input de Código */}
             <div className="form-group">
               <label>Código do Produto</label>
               <input 
@@ -147,7 +130,6 @@ function Cadastrar() {
               />
             </div>
 
-            {/* Input de Nome */}
             <div className="form-group">
               <label>Nome do Produto</label>
               <input 
@@ -209,8 +191,6 @@ function Cadastrar() {
           </form>
         </div>
 
-
-        {/* Cadastrar Fornecedor */}
         <div className="form-wrapper">
           <h2>Cadastrar Fornecedor</h2>
           <p>Não encontrou o fornecedor na lista? Adicione um novo aqui.</p>

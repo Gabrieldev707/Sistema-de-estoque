@@ -1,6 +1,6 @@
 const Produto = require('../models/produtoModel');
 
-// Rota POST (Cadastrar)
+// Rota POST Cadastrar
 exports.createProduto = async (req, res) => {
   const produto = new Produto({
     codigo: req.body.codigo,
@@ -18,7 +18,7 @@ exports.createProduto = async (req, res) => {
   }
 };
 
-// Rota GET /produtos (Listar Todos) 
+// Rota GET /produtos Listar Todos
 exports.getAllProdutos = async (req, res) => {
   try {
     const produtos = await Produto.find().populate('fornecedor');
@@ -43,7 +43,6 @@ exports.searchProdutos = async (req, res) => {
     };
 
     const produtos = await Produto.find(query).populate('fornecedor');
-
     res.status(200).json(produtos);
 
   } catch (error) {
@@ -56,15 +55,12 @@ exports.deleteProduto = async (req, res) => {
   try {
     const id = req.params.id;
     
-    // Lógica real de delete do Mongoose:
     const produtoDeletado = await Produto.findByIdAndDelete(id);
 
     if (!produtoDeletado) {
-      // Se não achou o produto, retorna 404
       return res.status(404).json({ message: "Produto não encontrado para exclusão" });
     }
 
-    // Se deu certo, retorna sucesso
     res.status(200).json({ message: `Produto ${produtoDeletado.nome} excluído com sucesso` });
   
   } catch (error) {
@@ -77,24 +73,19 @@ exports.updateProduto = async (req, res) => {
   try {
     const id = req.params.id;
     const dadosParaAtualizar = req.body;
-
-    // Lógica real de update do Mongoose:
-    // { new: true } -> Faz o Mongoose retornar o documento *depois* da atualização
     const produtoAtualizado = await Produto.findByIdAndUpdate(
       id, 
       dadosParaAtualizar, 
-      { new: true, runValidators: true } // 'runValidators' força o Mongoose a checar o 'required' do Model
+      { new: true, runValidators: true }
     );
 
     if (!produtoAtualizado) {
       return res.status(404).json({ message: "Produto não encontrado para atualização" });
     }
     
-    // Retorna o produto com os dados novos
     res.status(200).json(produtoAtualizado);
 
   } catch (error) {
-    // Erro 400 = Bad Request (provavelmente um 'codigo' duplicado)
     res.status(400).json({ message: error.message });
   }
 };
@@ -104,9 +95,6 @@ exports.updateProduto = async (req, res) => {
 exports.getProdutosPorFornecedor = async (req, res) => {
   try {
     const { id } = req.params;
-    
-    // Encontra todos os produtos onde o campo 'fornecedor'
-    // bate com o ID que recebemos na URL
     const produtos = await Produto.find({ fornecedor: id });
 
     res.status(200).json(produtos);
