@@ -6,12 +6,16 @@ router.get('/produtos', produtoController.getAllProdutos);
 
 router.post('/produtos', produtoController.createProduto);
 
-// Rota para "Pesquisar Produto" 
-// Usamos um "query param" (ex: /api/produtos/pesquisar?termo=lampada)
+//query param
 router.get('/produtos/pesquisar', produtoController.searchProdutos);
 
 router.delete('/produtos/:id', produtoController.deleteProduto);
 
 router.put('/produtos/:id', produtoController.updateProduto);
+
+router.get(
+  '/produtos/por-fornecedor/:id', 
+  produtoController.getProdutosPorFornecedor
+);
 
 module.exports = router;

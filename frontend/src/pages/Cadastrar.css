@@ -1,0 +1,100 @@
+.cadastrar-layout {
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
+}
+
+.form-wrapper {
+flex: 1; 
+min-width: 300px; 
+
+padding: 1.5rem;
+border-radius: 8px;
+background-color: #f2f2f26c;
+}
+
+/* Estilos de Formulário */
+.form-container {
+max-width: 600px;
+}
+
+.form-group {
+margin-bottom: 1.5rem;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+color: #333333;
+font-weight: 500;
+}
+
+.form-group label::after {
+content: " *";
+color: #dc3545;
+}
+
+.form-input {
+width: 100%;
+padding: 0.75rem;
+border-radius: 4px;
+font-size: 1rem;
+transition: border-color 0.3s;
+background-color: #DBDBDB;
+color: #333;
+border: 2px solid #cccccc;
+}
+
+.form-input:focus {
+outline: none;
+border-color: #333333;
+}
+
+.form-input::placeholder {
+color: #808080;
+}
+
+select.form-input {
+color: #333;
+}
+option[value=""] {
+color: #808080;
+}
+
+.mensagem {
+padding: 1rem;
+border-radius: 4px;
+margin-bottom: 2rem;
+text-align: center;
+font-weight: 500;
+}
+
+.mensagem.sucesso {
+background-color: #d4edda;
+color: #155724;
+border: 1px solid #c3e6cb;
+}
+
+.mensagem.erro {
+background-color: #f8d7da;
+color: #721c24;
+border: 1px solid #f5c6cb;
+}
+
+/* Botão Secundário */
+
+.btn-secondary {
+background-color: #3B3B3B;
+color: white;
+border: none;
+padding: 1rem 2rem; 
+font-size: 1.1rem; 
+border-radius: 4px;
+cursor: pointer;
+transition: background-color 0.3s;
+width: 100%; 
+}
+
+.btn-secondary:hover {
+background-color: #63635f;
+}

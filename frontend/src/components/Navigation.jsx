@@ -50,7 +50,7 @@ function Navigation() {
               to="/cadastrar" 
               className={getNavLinkClass}
             >
-              Cadastrar Produto
+              Cadastrar
             </NavLink>
           </li>
         </ul>

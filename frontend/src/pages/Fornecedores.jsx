@@ -1,50 +1,144 @@
-import './Pages.css'
-import { useProdutos } from '../context/ProdutosContext'
-import { useState } from 'react'
+import './fornecedores.css'
+import { useState, useEffect } from 'react'
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Fornecedores() {
-  const { produtos } = useProdutos()
-  const [fornecedorSelecionado, setFornecedorSelecionado] = useState(null)
+  const [fornecedorSelecionado, setFornecedorSelecionado] = useState(null);
+  const [listaFornecedores, setListaFornecedores] = useState([]);
+  const [produtosDoFornecedor, setProdutosDoFornecedor] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [erro, setErro] = useState(null);
+  const [mensagemSucesso, setMensagemSucesso] = useState(null);
 
-  // Calcular fornecedores e contagens
-  const fornecedores = {}
-  produtos.forEach(produto => {
-    if (!fornecedores[produto.fornecedor]) {
-      fornecedores[produto.fornecedor] = {
-        nome: produto.fornecedor,
-        quantidadeProdutos: 0,
-        produtos: []
-      }
+  const fetchFornecedores = async () => {
+    setLoading(true);
+    setErro(null);
+    try {
+      const response = await fetch(`${API_URL}/api/fornecedores`);
+      if (!response.ok) throw new Error('Não foi possível buscar os fornecedores.');
+      const data = await response.json();
+      setListaFornecedores(data);
+    } catch (err) {
+      setErro(err.message);
+    } finally {
+      setLoading(false);
     }
-    fornecedores[produto.fornecedor].quantidadeProdutos++
-    fornecedores[produto.fornecedor].produtos.push(produto)
-  })
+  };
 
-  const listaFornecedores = Object.values(fornecedores)
+  useEffect(() => {
+    fetchFornecedores();
+  }, []);
 
-  const verProdutosFornecedor = (fornecedor) => {
-    setFornecedorSelecionado(fornecedor)
-  }
+  const verProdutosFornecedor = async (fornecedor) => {
+    setFornecedorSelecionado(fornecedor);
+    setLoading(true);
+    setErro(null);
+    setMensagemSucesso(null);
+    try {
+      const response = await fetch(`${API_URL}/api/produtos/por-fornecedor/${fornecedor._id}`);
+      if (!response.ok) throw new Error('Não foi possível buscar os produtos.');
+      const data = await response.json();
+      setProdutosDoFornecedor(data);
+    } catch (err) {
+      setErro(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const voltarParaLista = () => {
-    setFornecedorSelecionado(null)
-  }
+    setFornecedorSelecionado(null);
+    setProdutosDoFornecedor([]);
+    fetchFornecedores();
+  };
 
-  // Se um fornecedor está selecionado, mostra seus produtos
-  if (fornecedorSelecionado) {
+  const handleExcluirFornecedor = async (fornecedorId) => {
+    setErro(null);
+    setMensagemSucesso(null);
+
+    if (!window.confirm("Tem certeza que deseja excluir este fornecedor? Esta ação não pode ser desfeita.")) {
+      return;
+    }
+
+    if (fornecedorSelecionado.quantidadeProdutos > 0) {
+      setErro("Não é possível excluir. Este fornecedor possui produtos cadastrados.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch(`${API_URL}/api/fornecedores/${fornecedorId}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.message || 'Falha ao excluir fornecedor.');
+      }
+
+      setMensagemSucesso("Fornecedor excluído com sucesso!");
+      voltarParaLista();
+    } catch (err) {
+      setErro(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (erro) {
     return (
       <div className="page-container">
-        <div className="cabecalho-fornecedor">
+        <p className="mensagem erro">{erro}</p>
+        {fornecedorSelecionado && (
           <button className="btn-voltar" onClick={voltarParaLista}>
             ← Voltar para Fornecedores
           </button>
-          <h2>Produtos de {fornecedorSelecionado.nome}</h2>
-          <p className="subtitulo">
-            {fornecedorSelecionado.quantidadeProdutos} produtos em estoque
-          </p>
-        </div>
+        )}
+      </div>
+    );
+  }
 
-        {fornecedorSelecionado.produtos.length === 0 ? (
+  if (fornecedorSelecionado) {
+    return (
+      <div className="page-container">
+
+        {/* --- CABEÇALHO ATUALIZADO --- */}
+        <div className="cabecalho-fornecedor">
+
+          <div className="cabecalho-botoes">
+            <button className="btn-voltar" onClick={voltarParaLista}>
+              ← Voltar para Fornecedores
+            </button>
+
+            <button
+              className="btn-excluir"
+              onClick={() => handleExcluirFornecedor(fornecedorSelecionado._id)}
+              disabled={loading}
+            >
+              🗑️ Deletar Fornecedor
+            </button>
+          </div>
+
+          <div className="cabecalho-info-acoes">
+            <p className="subtitulo">
+              {fornecedorSelecionado.quantidadeProdutos}{" "}
+              {fornecedorSelecionado.quantidadeProdutos === 1
+                ? "produto cadastrado"
+                : "produtos cadastrados"}
+            </p>
+          </div>
+
+          <div className="cabecalho-titulo">
+            <h2>Produtos de {fornecedorSelecionado.nome}</h2>
+          </div>
+
+        </div>
+        {/* --- FIM CABEÇALHO --- */}
+
+        {loading ? (
+          <div className="content-placeholder"><p>Carregando produtos...</p></div>
+        ) : produtosDoFornecedor.length === 0 ? (
           <div className="content-placeholder">
             <p>Nenhum produto deste fornecedor em estoque</p>
           </div>
@@ -60,8 +154,8 @@ function Fornecedores() {
                 </tr>
               </thead>
               <tbody>
-                {fornecedorSelecionado.produtos.map(produto => (
-                  <tr key={produto.id}>
+                {produtosDoFornecedor.map(produto => (
+                  <tr key={produto._id}>
                     <td><strong>{produto.codigo}</strong></td>
                     <td>{produto.nome}</td>
                     <td>{produto.quantidade}</td>
@@ -73,31 +167,37 @@ function Fornecedores() {
           </div>
         )}
       </div>
-    )
+    );
   }
 
-  // Lista principal de fornecedores
   return (
     <div className="page-container">
       <h2>Fornecedores</h2>
-      
-      {listaFornecedores.length === 0 ? (
+
+      {mensagemSucesso && (
+        <div className="mensagem sucesso">{mensagemSucesso}</div>
+      )}
+
+      {loading ? (
+        <div className="content-placeholder"><p>Carregando fornecedores...</p></div>
+      ) : listaFornecedores.length === 0 ? (
         <div className="content-placeholder">
           <p>Nenhum fornecedor cadastrado ainda</p>
-          <p>🏢 Cadastre produtos para ver os fornecedores aqui</p>
+          <p>🏢 Cadastre um fornecedor na página "Cadastrar"</p>
         </div>
       ) : (
         <div className="fornecedores-grid">
           {listaFornecedores.map(fornecedor => (
-            <div 
-              key={fornecedor.nome} 
+            <div
+              key={fornecedor._id}
               className="card-fornecedor"
               onClick={() => verProdutosFornecedor(fornecedor)}
             >
               <div className="fornecedor-info">
                 <h3>{fornecedor.nome}</h3>
                 <p className="quantidade-produtos">
-                  {fornecedor.quantidadeProdutos} {fornecedor.quantidadeProdutos === 1 ? 'produto' : 'produtos'}
+                  {fornecedor.quantidadeProdutos}{" "}
+                  {fornecedor.quantidadeProdutos === 1 ? 'produto' : 'produtos'}
                 </p>
                 <p className="ver-produtos">Clique para ver produtos →</p>
               </div>
@@ -106,7 +206,7 @@ function Fornecedores() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default Fornecedores
+export default Fornecedores;

@@ -1,0 +1,125 @@
+/* --- Estilos da Página Fornecedores (Grid Principal) --- */
+.fornecedores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card-fornecedor {
+  background: #f2f2f26c;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+}
+
+.card-fornecedor:hover {
+  border-color: #333333;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.fornecedor-info h3 {
+  color: #0D0D0D;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.quantidade-produtos {
+  color: #242424;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ver-produtos {
+  color: #525252;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* --- Cabeçalho Detalhes (Atualizado) --- */
+.cabecalho-fornecedor {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Linha de botões superior */
+.cabecalho-botoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Subtítulo abaixo */
+.cabecalho-info-acoes {
+  margin-top: 0.5rem;
+}
+
+/* Título */
+.cabecalho-titulo {
+  text-align: left;
+}
+
+.cabecalho-titulo h2 {
+  margin: 0;
+  padding-top: 0.25rem;
+}
+
+/* --- Botões Específicos --- */
+.cabecalho-fornecedor .btn-voltar {
+  background: #F2F2F2;
+  color: #3c3c3c;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.cabecalho-fornecedor .btn-voltar:hover {
+  background-color: #e0e0e0;
+  border-color: #a3a3a3;
+}
+
+/* Botão Excluir */
+.cabecalho-fornecedor .btn-excluir {
+  background-color: #dc3545;
+  color: white;
+  border: 1px solid #dc3545;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.cabecalho-fornecedor .btn-excluir:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.cabecalho-fornecedor .btn-excluir:disabled {
+  background-color: #e0a3a7;
+  border-color: #e0a3a7;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Subtítulo */
+.cabecalho-info-acoes .subtitulo {
+  color: #666666;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}

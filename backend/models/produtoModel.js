@@ -4,7 +4,7 @@ const produtoSchema = new mongoose.Schema({
   codigo: {
     type: String,
     required: true,
-    unique: true // Garante que o código do produto seja único
+    unique: true
   },
   nome: {
     type: String,
@@ -19,15 +19,11 @@ const produtoSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  //
-  // AQUI ESTÁ O RELACIONAMENTO:
-  //
+
   fornecedor: {
-    // 1. O tipo é um "ID de Objeto" do MongoDB
     type: mongoose.Schema.Types.ObjectId,
-    // 2. 'ref' diz ao Mongoose qual outro Model este ID referencia
     ref: 'Fornecedor',
-    required: true // Um produto DEVE ter um fornecedor
+    required: true
   }
 });
 

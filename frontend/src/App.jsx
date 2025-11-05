@@ -9,7 +9,6 @@ import Login from './pages/Login'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ProdutosProvider } from './context/ProdutosContext'
 
-// 1. Importe os componentes do React Router
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 
 // 2. Crie um "Layout" para suas páginas protegidas
@@ -19,11 +18,8 @@ function AppLayout() {
     <ProdutosProvider>
       <div className="app">
         <Header />
-        {/* ⭐ IMPORTANTE: Você precisará atualizar o Navigation! (veja passo 4) */}
         <Navigation /> 
         <main className="main-content">
-          {/* <Outlet /> é o espaço onde o React Router
-              vai renderizar <Produtos />, <Fornecedores />, etc. */}
           <Outlet />
         </main>
       </div>
@@ -31,11 +27,9 @@ function AppLayout() {
   )
 }
 
-// 3. Crie um "Porteiro" para as Rotas Protegidas
 function ProtectedRoutes() {
   const { usuario, carregando } = useAuth()
 
-  // 3a. Reutiliza sua tela de loading
   if (carregando) {
     return (
       <div style={{ 
@@ -54,13 +48,11 @@ function ProtectedRoutes() {
     )
   }
 
-  // 3b. Se não estiver logado, redireciona para /login
   if (!usuario) {
-    // 'replace' impede o usuário de "voltar" para a tela de login
     return <Navigate to="/login" replace />
   }
 
-  // 3c. Se estiver logado, mostra o Layout (que por sua vez mostra o <Outlet />)
+
   return <AppLayout />
 }
 
@@ -87,7 +79,6 @@ function AppContent() {
   )
 }
 
-// O App "wrapper" (que envolve) continua o mesmo
 function App() {
   return (
     <AuthProvider>
