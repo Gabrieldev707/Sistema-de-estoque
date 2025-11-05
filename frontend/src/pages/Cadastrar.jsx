@@ -60,7 +60,7 @@ function Cadastrar() {
 
       <form onSubmit={handleSubmit} className="form-container">
         <div className="form-group">
-          <label>Código do Produto *</label>
+          <label>Código do Produto</label>
           <input 
             type="text" 
             name="codigo"
@@ -72,7 +72,7 @@ function Cadastrar() {
         </div>
 
         <div className="form-group">
-          <label>Nome do Produto *</label>
+          <label>Nome do Produto</label>
           <input 
             type="text" 
             name="nome"
@@ -84,7 +84,7 @@ function Cadastrar() {
         </div>
 
         <div className="form-group">
-          <label>Fornecedor *</label>
+          <label>Fornecedor</label>
           <select 
             name="fornecedor"
             value={formData.fornecedor}
