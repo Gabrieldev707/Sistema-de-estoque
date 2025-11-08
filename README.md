@@ -5,8 +5,13 @@ Projeto da matéria de Criar serviços web.
 <img width="1512" height="741" alt="Screenshot (1)" src="https://github.com/user-attachments/assets/ea2fd705-6f63-4ec5-95d0-cc9a4d96622d" />
 
 mongodb rodando via docker!!!
+
 rodar npm install quando baixar o projeto no vscode
+
 se não der certo, tentar 
+
 npm install --prefix frontend
+
 npm install --prefix backend
+
 npm run dev para rodar, tem que ter o docker aberto no pc!!!
