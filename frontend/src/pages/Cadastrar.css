@@ -13,7 +13,6 @@ border-radius: 8px;
 background-color: #f2f2f26c;
 }
 
-/* Estilos de Formulário */
 .form-container {
 max-width: 600px;
 }
@@ -80,8 +79,6 @@ background-color: #f8d7da;
 color: #721c24;
 border: 1px solid #f5c6cb;
 }
-
-/* Botão Secundário */
 
 .btn-secondary {
 background-color: #3B3B3B;

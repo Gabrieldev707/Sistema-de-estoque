@@ -1,4 +1,3 @@
-/* --- Estilos da Página Fornecedores (Grid Principal) --- */
 .fornecedores-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -41,7 +40,6 @@
   margin: 0;
 }
 
-/* --- Cabeçalho Detalhes (Atualizado) --- */
 .cabecalho-fornecedor {
   display: flex;
   flex-direction: column;
@@ -49,7 +47,6 @@
   margin-bottom: 2rem;
 }
 
-/* Linha de botões superior */
 .cabecalho-botoes {
   display: flex;
   justify-content: space-between;
@@ -58,12 +55,10 @@
   gap: 1rem;
 }
 
-/* Subtítulo abaixo */
 .cabecalho-info-acoes {
   margin-top: 0.5rem;
 }
 
-/* Título */
 .cabecalho-titulo {
   text-align: left;
 }
@@ -73,7 +68,6 @@
   padding-top: 0.25rem;
 }
 
-/* --- Botões Específicos --- */
 .cabecalho-fornecedor .btn-voltar {
   background: #F2F2F2;
   color: #3c3c3c;
@@ -91,7 +85,6 @@
   border-color: #a3a3a3;
 }
 
-/* Botão Excluir */
 .cabecalho-fornecedor .btn-excluir {
   background-color: #dc3545;
   color: white;
@@ -117,7 +110,6 @@
   opacity: 0.7;
 }
 
-/* Subtítulo */
 .cabecalho-info-acoes .subtitulo {
   color: #666666;
   margin-top: 0.75rem;
