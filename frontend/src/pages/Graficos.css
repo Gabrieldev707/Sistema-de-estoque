@@ -1,0 +1,217 @@
+.graficos-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.graficos-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.graficos-header h1 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.graficos-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+
+/* 🎯 Filtro */
+
+.filtro-container {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filtro-container label {
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+}
+
+.fornecedor-select {
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-width: 250px;
+    background: white;
+}
+
+.fornecedor-select:focus {
+    outline: none;
+    border-color: #333;
+}
+
+
+/* 📊 Estatísticas */
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-left: 4px solid #007bff;
+}
+
+.stat-card.alert {
+    border-left-color: #dc3545;
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.stat-info p {
+    margin: 0.25rem 0 0 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+
+/* 📈 Container do Gráfico */
+
+.chart-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+
+/* 🎨 Tooltip Customizado */
+
+.custom-tooltip {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-label {
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.tooltip-value {
+    margin: 0.25rem 0;
+    color: #666;
+}
+
+.tooltip-codigo {
+    margin: 0.25rem 0 0 0;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+
+/* 📋 Legenda */
+
+.legenda-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legenda-cor {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legenda-cor.verde {
+    background-color: #28a745;
+}
+
+.legenda-cor.amarelo {
+    background-color: #ffc107;
+}
+
+.legenda-cor.vermelho {
+    background-color: #dc3545;
+}
+
+.legenda-item span {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+
+/* 📭 Estados Vazios */
+
+.no-data,
+.selecionar-fornecedor {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.placeholder-content h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+
+/* 📱 Responsividade */
+
+@media (max-width: 768px) {
+    .filtro-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    .legenda-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .graficos-container {
+        padding: 1rem;
+    }
+}

@@ -5,6 +5,7 @@ import Produtos from './pages/Produtos'
 import Fornecedores from './pages/Fornecedores'
 import Pesquisar from './pages/Pesquisar'
 import Cadastrar from './pages/Cadastrar'
+import Graficos from './pages/Graficos' // ⭐ NOVA PÁGINA
 import Login from './pages/Login'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import { ProdutosProvider } from './context/ProdutosContext'
@@ -52,6 +53,17 @@ function ProtectedRoutes() {
   return <AppLayout />
 }
 
+// ⭐ NOVA FUNÇÃO: Rotas só para donos
+function DonoRoutes() {
+  const { usuario } = useAuth()
+  
+  if (usuario?.tipo !== 'dono') {
+    return <Navigate to="/produtos" replace />
+  }
+
+  return <Outlet />
+}
+
 function AppContent() {
   return (
     <Routes>
@@ -62,6 +74,11 @@ function AppContent() {
         <Route path="/fornecedores" element={<Fornecedores />} />
         <Route path="/pesquisar" element={<Pesquisar />} />
         <Route path="/cadastrar" element={<Cadastrar />} />
+        
+        {/* 📊 ROTA DOS GRÁFICOS - SÓ PARA DONOS */}
+        <Route element={<DonoRoutes />}>
+          <Route path="/graficos" element={<Graficos />} />
+        </Route>
       </Route>
     </Routes>
   )
