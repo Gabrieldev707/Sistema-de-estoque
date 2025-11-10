@@ -1,3 +1,5 @@
+node_modules/
+
 # Dependências do Frontend
 frontend/node_modules/
 frontend/dist/
