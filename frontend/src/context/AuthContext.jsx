@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
   )
 }
 
-// ⭐⭐ ESTA LINHA ESTAVA FALTANDO - export correto do useAuth
+// export correto do useAuth
 export const useAuth = () => {
   const context = useContext(AuthContext)
   if (!context) {

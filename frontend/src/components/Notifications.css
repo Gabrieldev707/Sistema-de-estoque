@@ -1,0 +1,204 @@
+.notifications-container {
+    position: relative;
+    display: inline-block;
+}
+
+
+/* 🔔 Botão do Sino */
+
+.notifications-bell {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.notifications-bell:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* 🎯 Badge de Notificação */
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* 📋 Dropdown de Notificações */
+
+.notifications-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 320px;
+    z-index: 1000;
+    margin-top: 0.5rem;
+}
+
+
+/* Cabeçalho */
+
+.notifications-header {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    background: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.notifications-header h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.alert-count {
+    background: #dc3545;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.no-alerts {
+    color: #28a745;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+/* Lista de Notificações */
+
+.notifications-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.empty-notifications {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #666;
+}
+
+.empty-notifications p {
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+}
+
+.empty-notifications span {
+    font-size: 0.9rem;
+}
+
+
+/* Itens de Notificação */
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+    background-color: #f8f9fa;
+}
+
+.notification-item.critico {
+    border-left: 4px solid #dc3545;
+}
+
+.notification-item.alto {
+    border-left: 4px solid #fd7e14;
+}
+
+.notification-item.medio {
+    border-left: 4px solid #ffc107;
+}
+
+.notification-icon {
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    margin-top: 0.1rem;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content strong {
+    display: block;
+    color: #333;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.notification-content span {
+    color: #666;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.notification-content small {
+    color: #999;
+    font-size: 0.75rem;
+}
+
+
+/* Rodapé */
+
+.notifications-footer {
+    padding: 1rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.view-all-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.3s;
+}
+
+.view-all-btn:hover {
+    background: #0056b3;
+}
