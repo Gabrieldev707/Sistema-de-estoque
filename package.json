@@ -8,7 +8,7 @@
     "dev:db": "docker-compose up mongo",
     "dev:backend": "npm run dev --prefix backend",
     "dev:frontend": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm:dev:db\" \"npm:dev:backend\" \"npm:dev:frontend\"",
+    "dev": "concurrently \"npm:dev:backend\" \"npm:dev:frontend\"",
     "dev:nodb": "concurrently \"npm:dev:backend\" \"npm:dev:frontend\""
   },
   "repository": {
