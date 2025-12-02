@@ -89,7 +89,6 @@ font-size: 1.1rem;
 border-radius: 4px;
 cursor: pointer;
 transition: background-color 0.3s;
-width: 100%; 
 }
 
 .btn-secondary:hover {

@@ -29,7 +29,6 @@
     border-bottom: 3px solid #333333;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     position: relative;
-    /* ⭐ IMPORTANTE */
 }
 
 .header-container {
@@ -37,11 +36,9 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    /* ⭐ Logo no centro */
     align-items: center;
     padding: 0 2rem;
     position: relative;
-    /* ⭐ IMPORTANTE */
 }
 
 .logo {
@@ -50,18 +47,11 @@
     object-fit: contain;
 }
 
-
-/* ⭐ NOVO: Container da direita ABSOLUTO */
-
 .header-right {
     position: absolute;
-    /* ⭐ MUDANÇA PRINCIPAL */
     right: 2rem;
-    /* ⭐ Distância da direita */
     top: 50%;
-    /* ⭐ Centraliza verticalmente */
     transform: translateY(-50%);
-    /* ⭐ Ajuste fino */
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -83,9 +73,6 @@
     font-size: 0.75rem;
 }
 
-
-/* ⭐ RESPONSIVIDADE */
-
 @media (max-width: 768px) {
     .header-container {
         padding: 0 1rem;
@@ -102,6 +89,5 @@
     }
     .user-info small {
         display: none;
-        /* ⭐ Esconde em mobile */
     }
 }
