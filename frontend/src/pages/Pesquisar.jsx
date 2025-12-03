@@ -169,13 +169,13 @@ function Pesquisar() {
                     onClick={() => iniciarEdicao(produto)} 
                     className="btn-editar"
                   >
-                    ✏️ Editar
+                    Editar
                   </button>
                   <button 
                     onClick={() => handleExcluir(produto._id)} 
                     className="btn-excluir"
                   >
-                    🗑️ Excluir
+                    Excluir
                   </button>
                 </td>
               </tr>

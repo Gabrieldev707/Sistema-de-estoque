@@ -73,7 +73,7 @@ function Graficos() {
   return (
     <div className="graficos-container">
       <div className="graficos-header">
-        <h1>📊 Dashboard de Estoque</h1>
+        <h1>Dashboard de Estoque</h1>
         <p>Controle visual do estoque por fornecedor</p>
       </div>
 

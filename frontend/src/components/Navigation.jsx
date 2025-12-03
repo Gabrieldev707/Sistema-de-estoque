@@ -56,7 +56,7 @@ function Navigation() {
                 to="/graficos" 
                 className={getNavLinkClass}
               >
-                📊 Gráficos
+                Relatório
               </NavLink>
             </li>
           )}

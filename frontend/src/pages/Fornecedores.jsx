@@ -114,7 +114,7 @@ function Fornecedores() {
               onClick={() => handleExcluirFornecedor(fornecedorSelecionado._id)}
               disabled={loading}
             >
-              🗑️ Deletar Fornecedor
+              Deletar Fornecedor
             </button>
           </div>
 

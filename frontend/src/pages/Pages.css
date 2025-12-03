@@ -1,166 +1,246 @@
+/* HEADER & NAVEGAÇÃO */
+
+.header {
+    background-color: #000000;
+    height: 200px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgb(0, 0, 0);
+    display: flex;
+    align-items: center; 
+    position: relative; 
+}
+
+/* Container que centraliza a logo */
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    height: 200px; 
+    width: auto;
+    object-fit: contain;
+}
+
+/* Notificações + Usuário */
+.header-right {
+    position: absolute;
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 10;
+}
+
+.user-info {
+    text-align: right;
+    color: white;
+}
+
+.user-info span {
+    display: block;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.user-info small {
+    opacity: 0.8;
+    font-size: 0.75rem;
+}
+
+/* Responsividade do Header */
+@media (max-width: 768px) {
+    .logo {
+        height: 60px;
+    }
+    .header-right {
+        right: 1rem;
+        gap: 1rem;
+    }
+    .user-info small {
+        display: none;
+    }
+}
+
+/* CONTEÚDO DA PÁGINA */
+
 .page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #000000 !important;
 }
 
 .page-container h2 {
-  color: #333333;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-size: 2rem;
+    color: #333333;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
 }
 
 .content-placeholder {
-  background-color: #f5f5f5;
-  padding: 3rem;
-  text-align: center;
-  border-radius: 8px;
-  border: 2px dashed #cccccc;
+    background-color: #f5f5f5;
+    padding: 3rem;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px dashed #cccccc;
+    color: #000000 !important;
 }
 
 .content-placeholder p {
-  color: #666666;
-  margin-bottom: 0.5rem;
+    color: #666666;
+    margin-bottom: 0.5rem;
 }
 
+/* TABELA DE PRODUTOS */
+
 .table-container {
-  overflow-x: auto;
+    overflow-x: auto;
+    color: #000000 !important;
 }
 
 .produtos-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  color: #000000 !important;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: #000000 !important;
 }
 
+/* Cabeçalho da Tabela  */
 .produtos-table th {
-  background-color: #242424 !important;
-  color: #ffffff !important;
-  padding: 1rem;
-  text-align: left;
-  font-weight: bold;
+    background-color: #242424 !important;
+    color: #ffffff !important;
+    padding: 1rem;
+    text-align: center; 
+    font-weight: bold;
 }
 
+/* Células da Tabela */
 .produtos-table td {
-  color: #000000 !important;
-  padding: 1rem;
-  border-bottom: 1px solid #dddddd;
-  background-color: white;
+    color: #000000 !important;
+    padding: 1rem;
+    border-bottom: 1px solid #dddddd;
+    background-color: white;
+    text-align: center; 
+    vertical-align: middle;
 }
 
 .produtos-table tr:hover {
-  background-color: #f5f5f5 !important;
+    background-color: #f5f5f5 !important;
 }
 
-.page-container,
-.table-container,
-.content-placeholder {
-  color: #000000 !important;
+/* Container dos Botões na Tabela  */
+.acoes-botoes {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.btn-primary {
-  background-color: #3B3B3B;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+/* BUSCA E BOTÕES GERAIS */
 
-.btn-primary:hover {
-  background-color: #63635f;
-}
-
-.btn-large {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+.search-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .search-input {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-  background-color: #DBDBDB;
-  color: #808080; 
-  border: 2px solid #cccccc;
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: #DBDBDB;
+    color: #808080; 
+    border: 2px solid #cccccc;
+    flex: 1;
 }
 
 .search-input:focus {
-  outline: none;
-  border-color: #333333;
+    outline: none;
+    border-color: #333333;
 }
 
-.search-container {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.btn-primary {
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
+    background-color: #3B3B3B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.875rem;
 }
 
-.search-input {
-  flex: 1;
+.btn-primary:hover {
+    background-color: #63635f;
 }
 
-.acoes-botoes {
-  display: flex;
-  gap: 0.5rem;
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
 }
 
+/* Botões de Ação (Editar/Excluir/Cancelar) */
 .btn-editar {
-  background-color: #949494;
-  color: #000000;
-  border: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 0.875rem;
+    background-color: #3B3B3B;
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.875rem;
 }
 
 .btn-editar:hover {
-  background-color: #63635f;
+    background-color: #727272;
 }
 
 .btn-excluir {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-size: 0.875rem;
+    background-color: #3B3B3B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.875rem;
 }
 
 .btn-excluir:hover {
-  background-color: #b10012;
+    background-color: #b10012;
 }
 
 .btn-excluir.pequeno {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
 }
 
 .btn-cancelar {
-  background-color: #3B3B3B;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin: 3px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
+    background-color: #3B3B3B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.875rem;
 }
 
 .btn-cancelar:hover {
-  background-color: #808080;
+    background-color: #808080;
 }

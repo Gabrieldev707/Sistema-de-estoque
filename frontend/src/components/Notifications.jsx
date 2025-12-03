@@ -1,37 +1,48 @@
 import './Notifications.css'
-import { useProdutos } from '../context/ProdutosContext'
 import { useState, useRef, useEffect } from 'react'
+import { toast } from 'react-toastify';
 
-function Notifications({ onVerAlertas }) {  // ⭐ NOVO PROP
-  const { produtos } = useProdutos()
+// Pega a URL da API
+const API_URL = import.meta.env.VITE_API_URL;
+
+function Notifications({ onVerAlertas }) {
+  const [alertas, setAlertas] = useState([])
   const [mostrarNotificacoes, setMostrarNotificacoes] = useState(false)
   const dropdownRef = useRef(null)
 
-  // 🚨 Calcular alertas
-  const calcularAlertas = () => {
-    if (!produtos || !Array.isArray(produtos)) {
-      return []
+  // --- BUSCAR ALERTAS DO BACKEND ---
+  const fetchAlertas = async () => {
+    try {
+      const response = await fetch(`${API_URL}/api/produtos/baixo-estoque`);
+      if (response.ok) {
+        const data = await response.json();
+        setAlertas(data);
+        
+        if (data.length > 0) {
+           toast.warning(`Atenção: ${data.length} produtos com estoque crítico!`, {
+             toastId: 'alerta-estoque'
+           });
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao buscar notificações", error);
     }
-    
-    const alertasReais = produtos.filter(produto => {
-      const qtd = Number(produto.quantidade)
-      return !isNaN(qtd) && qtd < 10
-    })
-    
-    return alertasReais
   }
 
-  const alertas = calcularAlertas()
+  useEffect(() => {
+    fetchAlertas();
+    const intervalo = setInterval(fetchAlertas, 60000);
+    return () => clearInterval(intervalo);
+  }, []);
+
   const quantidadeAlertas = alertas.length
 
-  // Fechar dropdown ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setMostrarNotificacoes(false)
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
@@ -40,11 +51,10 @@ function Notifications({ onVerAlertas }) {  // ⭐ NOVO PROP
     setMostrarNotificacoes(!mostrarNotificacoes)
   }
 
+  // --- AQUI ESTAVA O PROBLEMA: A FUNÇÃO EXISTIA MAS NÃO ERA USADA ---
   const handleVerAlertas = () => {
-    setMostrarNotificacoes(false) // Fecha o dropdown
-    if (onVerAlertas) {
-      onVerAlertas() // ⭐ Chama a função passada pelo parent
-    }
+    setMostrarNotificacoes(false)
+    if (onVerAlertas) onVerAlertas()
   }
 
   const getNivelAlerta = (quantidade) => {
@@ -63,7 +73,6 @@ function Notifications({ onVerAlertas }) {  // ⭐ NOVO PROP
 
   return (
     <div className="notifications-container" ref={dropdownRef}>
-      {/* 🔔 Ícone do Sino */}
       <button 
         className="notifications-bell"
         onClick={toggleNotificacoes}
@@ -76,11 +85,10 @@ function Notifications({ onVerAlertas }) {  // ⭐ NOVO PROP
         )}
       </button>
 
-      {/* 📋 Dropdown de Notificações */}
       {mostrarNotificacoes && (
         <div className="notifications-dropdown">
           <div className="notifications-header">
-            <h3>⚠️ Alertas de Estoque</h3>
+            <h3>Alertas de Estoque</h3>
             {quantidadeAlertas > 0 ? (
               <span className="alert-count">{quantidadeAlertas} alertas</span>
             ) : (
@@ -97,7 +105,7 @@ function Notifications({ onVerAlertas }) {  // ⭐ NOVO PROP
             ) : (
               alertas.map(produto => (
                 <div 
-                  key={produto.id} 
+                  key={produto._id} 
                   className={`notification-item ${getNivelAlerta(produto.quantidade)}`}
                 >
                   <div className="notification-icon">
@@ -106,23 +114,31 @@ function Notifications({ onVerAlertas }) {  // ⭐ NOVO PROP
                   <div className="notification-content">
                     <strong>{produto.nome}</strong>
                     <span>{produto.quantidade} unidades</span>
-                    <small>Código: {produto.codigo}</small>
+                    <small>Fornecedor: {produto.fornecedor?.nome || 'N/A'}</small>
                   </div>
                 </div>
               ))
             )}
           </div>
 
-          {alertas.length > 0 && (
-            <div className="notifications-footer">
-              <button 
-                className="view-all-btn"
+          {/* --- CORREÇÃO: ADICIONEI O RODAPÉ COM O BOTÃO AQUI --- */}
+          <div className="notifications-footer" style={{ padding: '10px', textAlign: 'center', borderTop: '1px solid #eee' }}>
+            <button 
                 onClick={handleVerAlertas}
-              >
-                Ver Todos os Alertas
-              </button>
-            </div>
-          )}
+                style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#007bff',
+                    cursor: 'pointer',
+                    fontSize: '0.9rem',
+                    fontWeight: 'bold'
+                }}
+            >
+                Ver Todo o Estoque
+            </button>
+          </div>
+          {/* --------------------------------------------------- */}
+
         </div>
       )}
     </div>

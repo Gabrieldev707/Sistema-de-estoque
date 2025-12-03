@@ -254,13 +254,13 @@ function Produtos() {
                         className="btn-editar"
                         onClick={() => iniciarEdicao(produto)}
                       >
-                        ✏️ Editar
+                        Editar
                       </button>
                       <button 
                         className="btn-excluir pequeno"
                         onClick={() => confirmarExclusao(produto)}
                       >
-                        🗑️ Excluir
+                        Excluir
                       </button>
                     </div>
                   </td>

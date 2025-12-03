@@ -102,3 +102,16 @@ exports.getProdutosPorFornecedor = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Rota GET /produtos/baixo-estoque
+exports.getProdutosBaixoEstoque = async (req, res) => {
+  try {
+    const produtosCriticos = await Produto.find({ 
+      quantidade: { $lt: 10 } 
+    }).populate('fornecedor');
+
+    res.status(200).json(produtosCriticos);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

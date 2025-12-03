@@ -12,6 +12,8 @@ router.delete('/produtos/:id', produtoController.deleteProduto);
 
 router.put('/produtos/:id', produtoController.updateProduto);
 
+router.get('/produtos/baixo-estoque', produtoController.getProdutosBaixoEstoque);
+
 router.get(
   '/produtos/por-fornecedor/:id', 
   produtoController.getProdutosPorFornecedor

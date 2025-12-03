@@ -86,9 +86,8 @@
 }
 
 .cabecalho-fornecedor .btn-excluir {
-  background-color: #dc3545;
+  background-color: #3B3B3B;
   color: white;
-  border: 1px solid #dc3545;
   padding: 0.6rem 1rem;
   border-radius: 8px;
   cursor: pointer;
