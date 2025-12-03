@@ -21,7 +21,7 @@
 }
 
 
-/* 🎯 Filtro */
+/* Filtro */
 
 .filtro-container {
     background: white;
@@ -55,7 +55,7 @@
 }
 
 
-/* 📊 Estatísticas */
+/* Estatísticas */
 
 .stats-container {
     display: grid;
@@ -96,7 +96,7 @@
 }
 
 
-/* 📈 Container do Gráfico */
+/* Container do Gráfico */
 
 .chart-container {
     background: white;
@@ -112,7 +112,7 @@
 }
 
 
-/* 🎨 Tooltip Customizado */
+/* Tooltip Customizado */
 
 .custom-tooltip {
     background: white;
@@ -141,7 +141,7 @@
 }
 
 
-/* 📋 Legenda */
+/* Legenda */
 
 .legenda-container {
     display: flex;
@@ -182,7 +182,7 @@
 }
 
 
-/* 📭 Estados Vazios */
+/*  Estados Vazios */
 
 .no-data,
 .selecionar-fornecedor {
@@ -197,7 +197,7 @@
 }
 
 
-/* 📱 Responsividade */
+/* Responsividade */
 
 @media (max-width: 768px) {
     .filtro-container {

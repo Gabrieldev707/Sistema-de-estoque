@@ -2,7 +2,6 @@ import './Notifications.css'
 import { useState, useRef, useEffect } from 'react'
 import { toast } from 'react-toastify';
 
-// Pega a URL da API
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Notifications({ onVerAlertas }) {
@@ -51,7 +50,6 @@ function Notifications({ onVerAlertas }) {
     setMostrarNotificacoes(!mostrarNotificacoes)
   }
 
-  // --- AQUI ESTAVA O PROBLEMA: A FUNÇÃO EXISTIA MAS NÃO ERA USADA ---
   const handleVerAlertas = () => {
     setMostrarNotificacoes(false)
     if (onVerAlertas) onVerAlertas()
@@ -92,7 +90,7 @@ function Notifications({ onVerAlertas }) {
             {quantidadeAlertas > 0 ? (
               <span className="alert-count">{quantidadeAlertas} alertas</span>
             ) : (
-              <span className="no-alerts">Tudo sob controle! ✅</span>
+              <span className="no-alerts">Tudo sob controle!</span>
             )}
           </div>
 
@@ -100,7 +98,7 @@ function Notifications({ onVerAlertas }) {
             {alertas.length === 0 ? (
               <div className="empty-notifications">
                 <p>Nenhum alerta no momento</p>
-                <span>Estoque está controlado! 🎉</span>
+                <span>Estoque está controlado!</span>
               </div>
             ) : (
               alertas.map(produto => (
@@ -121,7 +119,6 @@ function Notifications({ onVerAlertas }) {
             )}
           </div>
 
-          {/* --- CORREÇÃO: ADICIONEI O RODAPÉ COM O BOTÃO AQUI --- */}
           <div className="notifications-footer" style={{ padding: '10px', textAlign: 'center', borderTop: '1px solid #eee' }}>
             <button 
                 onClick={handleVerAlertas}
@@ -137,7 +134,6 @@ function Notifications({ onVerAlertas }) {
                 Ver Todo o Estoque
             </button>
           </div>
-          {/* --------------------------------------------------- */}
 
         </div>
       )}

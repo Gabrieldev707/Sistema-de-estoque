@@ -9,9 +9,7 @@ function Header() {
 
   // FUNÇÃO para o botão "Ver Alertas"
   const handleVerAlertas = () => {
-    // Salva no localStorage que deve ativar o filtro
     localStorage.setItem('filtroEstoqueBaixo', 'true')
-    // Navega para a página de produtos
     navigate('/produtos')
   }
 

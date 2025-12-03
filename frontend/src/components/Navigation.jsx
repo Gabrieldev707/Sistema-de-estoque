@@ -49,7 +49,7 @@ function Navigation() {
             </NavLink>
           </li>
 
-          {/* 📊 NOVA ABA - SÓ PARA DONOS */}
+          {/* SÓ PARA DONOS */}
           {usuario?.tipo === 'dono' && (
             <li>
               <NavLink 

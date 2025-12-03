@@ -4,7 +4,7 @@
 }
 
 
-/* 🔔 Botão do Sino */
+/* Botão do Sino */
 
 .notifications-bell {
     background: none;
@@ -22,7 +22,7 @@
 }
 
 
-/* 🎯 Badge de Notificação */
+/* Badge de Notificação */
 
 .notification-badge {
     position: absolute;
@@ -54,7 +54,7 @@
 }
 
 
-/* 📋 Dropdown de Notificações */
+/* Dropdown de Notificações */
 
 .notifications-dropdown {
     position: absolute;

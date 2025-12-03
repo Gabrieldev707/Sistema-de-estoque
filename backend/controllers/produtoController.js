@@ -107,7 +107,7 @@ exports.getProdutosPorFornecedor = async (req, res) => {
 exports.getProdutosBaixoEstoque = async (req, res) => {
   try {
     const produtosCriticos = await Produto.find({ 
-      quantidade: { $lt: 10 } 
+      quantidade: { $lt: 15 } 
     }).populate('fornecedor');
 
     res.status(200).json(produtosCriticos);
