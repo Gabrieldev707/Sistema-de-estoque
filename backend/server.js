@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+// const logger = require('./middlewares/loggerSimples');
 
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const produtoRoutes = require('./routes/produtoRoutes');
@@ -13,8 +14,9 @@ const fornecedorRoutes = require('./routes/fornecedorRoutes');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// 5. Configura os Middlewares
+// Configura os Middlewares
 app.use(morgan('dev'));
+// app.use(logger);
 app.use(cors());
 app.use(express.json());
 
@@ -40,7 +42,6 @@ app.use('/api', produtoRoutes);
 app.use('/api', fornecedorRoutes);
 app.use(require('./middlewares/notFoundMiddleware'));
 
-app.use(errorMiddleware);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {
