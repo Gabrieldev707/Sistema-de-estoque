@@ -192,7 +192,7 @@ Configure as credenciais antes de rodar.
 
 PORT=4000
 
-MONGODB_URL=mongodb+srv://gabrielazevedoxx_db_user:Naruto2017!@dluzbancodados.n90jist.mongodb.net/?appName=DluzBancoDados
+MONGODB_URL=mongodb+srv://
 ```
 
 📂 Configuração do Frontend (.env.development)
