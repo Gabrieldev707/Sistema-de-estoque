@@ -206,6 +206,15 @@ VITE_API_URL=http://localhost:4000
 $ npm run dev
 ```
 
+### 4. Fazer login no Site
+```
+usuário: pai
+senha: senha 123
+
+usuário: funcionario
+senha: senha123
+```
+
 <br>
 
 <a name="license"></a>
