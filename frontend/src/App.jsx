@@ -75,7 +75,7 @@ function AppContent() {
         <Route path="/pesquisar" element={<Pesquisar />} />
         <Route path="/cadastrar" element={<Cadastrar />} />
         
-        {/* 📊 ROTA DOS GRÁFICOS - SÓ PARA DONOS */}
+        {/* ROTA DOS GRÁFICOS - SÓ PARA DONOS */}
         <Route element={<DonoRoutes />}>
           <Route path="/graficos" element={<Graficos />} />
         </Route>
