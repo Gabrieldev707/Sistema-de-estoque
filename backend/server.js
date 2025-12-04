@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const produtoRoutes = require('./routes/produtoRoutes');
 const fornecedorRoutes = require('./routes/fornecedorRoutes');
+const errorMiddleware = require('./middlewares/errorMiddleware');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -34,6 +35,8 @@ mongoose.connect(MONGODB_URL)
 //  Configura as Rotas
 app.use('/api', produtoRoutes);
 app.use('/api', fornecedorRoutes);
+
+app.use(errorMiddleware);
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor backend rodando na porta ${PORT}`);

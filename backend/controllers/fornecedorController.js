@@ -1,66 +1,55 @@
 const Fornecedor = require('../models/fornecedorModel');
 const Produto = require('../models/produtoModel');
+const asyncHandler = require('../utils/asyncHandler');
 
-// Rota POST 
-exports.createFornecedor = async (req, res) => {
+// Rota POST Cadastrar
+exports.createFornecedor = asyncHandler(async (req, res) => {
   const fornecedor = new Fornecedor({
     nome: req.body.nome
   });
-  try {
-    const novoFornecedor = await fornecedor.save();
-    res.status(201).json(novoFornecedor);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
 
+  const novoFornecedor = await fornecedor.save();
+  res.status(201).json(novoFornecedor);
+});
 
-// Rota GET 
-exports.getAllFornecedores = async (req, res) => {
-  try {
-    const fornecedoresComContagem = await Fornecedor.aggregate([
-      {
-        $lookup: {
-          from: 'produtos',
-          localField: '_id',
-          foreignField: 'fornecedor',
-          as: 'produtosDoFornecedor'
-        }
-      },
-      {
-        $project: {
-          nome: 1, 
-          quantidadeProdutos: { $size: '$produtosDoFornecedor' }
-        }
+// Rota GET Listar com contagem de produtos
+exports.getAllFornecedores = asyncHandler(async (req, res) => {
+  const fornecedoresComContagem = await Fornecedor.aggregate([
+    {
+      $lookup: {
+        from: 'produtos',
+        localField: '_id',
+        foreignField: 'fornecedor',
+        as: 'produtosDoFornecedor'
       }
-    ]);
-    
-    res.status(200).json(fornecedoresComContagem);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+    },
+    {
+      $project: {
+        nome: 1, 
+        quantidadeProdutos: { $size: '$produtosDoFornecedor' }
+      }
+    }
+  ]);
+  
+  res.status(200).json(fornecedoresComContagem);
+});
 
 // Rota DELETE /fornecedores/:id
-exports.deleteFornecedor = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const produtos = await Produto.find({ fornecedor: id });
-    if (produtos.length > 0) {
-      return res.status(400).json({ 
-        message: `Não é possível excluir. Este fornecedor está associado a ${produtos.length} produto(s).` 
-      });
-    }
-
-    const fornecedorDeletado = await Fornecedor.findByIdAndDelete(id);
-
-    if (!fornecedorDeletado) {
-      return res.status(404).json({ message: "Fornecedor não encontrado." });
-    }
-
-    res.status(200).json({ message: "Fornecedor excluído com sucesso." });
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+exports.deleteFornecedor = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const produtos = await Produto.find({ fornecedor: id });
+  
+  if (produtos.length > 0) {
+    res.status(400);
+    throw new Error(`Não é possível excluir. Este fornecedor está associado a ${produtos.length} produto(s).`);
   }
-};
+
+  const fornecedorDeletado = await Fornecedor.findByIdAndDelete(id);
+
+  if (!fornecedorDeletado) {
+    res.status(404);
+    throw new Error("Fornecedor não encontrado.");
+  }
+
+  res.status(200).json({ message: "Fornecedor excluído com sucesso." });
+});
