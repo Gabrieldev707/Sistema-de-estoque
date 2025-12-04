@@ -56,7 +56,7 @@ function Cadastrar() {
         throw new Error(errData.message || 'Erro ao cadastrar produto')
       }
 
-      setProdutoMensagem('Produto cadastrado com sucesso! ✅')
+      setProdutoMensagem('Produto cadastrado com sucesso!')
       setProdutoFormData({
         codigo: '', nome: '', fornecedor: '', quantidade: '', preco: ''
       })
@@ -88,7 +88,7 @@ function Cadastrar() {
         throw new Error(errData.message || 'Erro ao cadastrar fornecedor')
       }
 
-      setFornecedorMensagem('Fornecedor cadastrado com sucesso! ✅')
+      setFornecedorMensagem('Fornecedor cadastrado com sucesso!')
       setFornecedorNome('')
       fetchFornecedores()      
       setTimeout(() => setFornecedorMensagem(''), 3000)

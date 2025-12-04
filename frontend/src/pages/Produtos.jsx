@@ -1,3 +1,4 @@
+import { Package } from 'lucide-react';
 import './Pages.css'
 import { useState, useEffect } from 'react'
 
@@ -225,7 +226,7 @@ function Produtos() {
       {produtos.length === 0 ? (
         <div className="content-placeholder">
           <p>Nenhum produto cadastrado ainda</p>
-          <p>📦 Use a opção "Cadastrar Produto" para adicionar itens ao estoque</p>
+          <p><Package/> Use a opção "Cadastrar Produto" para adicionar itens ao estoque</p>
         </div>
       ) : (
         <div className="table-container">

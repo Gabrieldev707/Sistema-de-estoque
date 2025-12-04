@@ -1,6 +1,7 @@
 import './Notifications.css'
 import { useState, useRef, useEffect } from 'react'
 import { toast } from 'react-toastify';
+import { Bell } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -75,7 +76,7 @@ function Notifications({ onVerAlertas }) {
         className="notifications-bell"
         onClick={toggleNotificacoes}
       >
-        🔔
+        <Bell/>
         {quantidadeAlertas > 0 && (
           <span className="notification-badge">
             {quantidadeAlertas}

@@ -86,15 +86,22 @@
 .content-placeholder {
     background-color: #f5f5f5;
     padding: 3rem;
-    text-align: center;
     border-radius: 8px;
     border: 2px dashed #cccccc;
     color: #000000 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .content-placeholder p {
     color: #666666;
     margin-bottom: 0.5rem;
+    display: flex;            
+    align-items: center;      
+    justify-content: center;   
+    gap: 10px;                
 }
 
 /* TABELA DE PRODUTOS */
@@ -211,6 +218,8 @@
 }
 
 .btn-excluir {
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
     background-color: #3B3B3B;
     color: white;
     border: none;
@@ -218,6 +227,21 @@
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 0.875rem;
+}
+.acoes-botoes .btn-excluir {
+    margin-left: 1px; 
+}
+.modal-buttons .btn-excluir {
+    margin-left: 2px;
+    margin-bottom: 0; 
+}
+.acoes-botoes .btn-excluir.pequeno {
+    margin-left: 1px; /* Dá um empurrãozinho para desgrudar do botão Editar */
+}
+
+.modal-buttons .btn-excluir.pequeno {
+    margin-left: 2px;
+    margin-bottom: 0; 
 }
 
 .btn-excluir:hover {
@@ -227,6 +251,7 @@
 .btn-excluir.pequeno {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
+    margin: 0; 
 }
 
 .btn-cancelar {

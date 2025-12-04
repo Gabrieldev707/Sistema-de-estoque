@@ -1,5 +1,6 @@
 import './fornecedores.css'
 import { useState, useEffect } from 'react'
+import { Factory } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -180,7 +181,7 @@ function Fornecedores() {
       ) : listaFornecedores.length === 0 ? (
         <div className="content-placeholder">
           <p>Nenhum fornecedor cadastrado ainda</p>
-          <p>🏢 Cadastre um fornecedor na página "Cadastrar"</p>
+          <p><Factory/> Cadastre um fornecedor na página "Cadastrar"</p>
         </div>
       ) : (
         <div className="fornecedores-grid">

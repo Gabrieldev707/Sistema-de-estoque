@@ -1,5 +1,6 @@
 import './Pages.css'
 import { useState, useEffect } from 'react'
+import { Search, Frown  } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -118,7 +119,7 @@ function Pesquisar() {
     if (loading) {
       return (
         <div className="content-placeholder">
-          <p>🔍 Buscando...</p>
+          <p> <Search/> Buscando...</p>
         </div>
       );
     }
@@ -130,7 +131,7 @@ function Pesquisar() {
     if (!buscaRealizada) {
       return (
         <div className="content-placeholder">
-          <p>🔍 Resultados da pesquisa aparecerão aqui</p>
+          <p> <Search/> Resultados da pesquisa aparecerão aqui</p>
         </div>
       );
     }
@@ -138,7 +139,7 @@ function Pesquisar() {
     if (resultados.length === 0) {
       return (
         <div className="content-placeholder">
-          <p>😕 Nenhum resultado encontrado para "<strong>{termoBusca}</strong>".</p>
+          <p> <Frown/> Nenhum resultado encontrado para "<strong>{termoBusca}</strong>".</p>
         </div>
       );
     }
@@ -173,7 +174,7 @@ function Pesquisar() {
                   </button>
                   <button 
                     onClick={() => handleExcluir(produto._id)} 
-                    className="btn-excluir"
+                    className="btn-excluir pequeno"
                   >
                     Excluir
                   </button>
@@ -189,7 +190,6 @@ function Pesquisar() {
   return (
     <div className="page-container">
       <h2>Pesquisar Produto</h2>
-      
 
       <form onSubmit={handleSearch} className="search-container">
         <input 

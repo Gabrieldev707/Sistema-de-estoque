@@ -5,16 +5,22 @@
 
 
 /* Botão do Sino */
-
 .notifications-bell {
     background: none;
     border: none;
-    font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 8px; /* Espaço clicável ao redor do ícone */
     border-radius: 50%;
     transition: background-color 0.3s;
-    position: relative;
+    position: relative; /* Essencial para "segurar" a bolinha vermelha */
+    
+    /* Configuração para centralizar o SVG */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Cor do ícone (branco, baseado na sua imagem escura) */
+    color: #ffffff; 
 }
 
 .notifications-bell:hover {
