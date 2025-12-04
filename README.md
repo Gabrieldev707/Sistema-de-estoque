@@ -191,13 +191,13 @@ Configure as credenciais antes de rodar.
 # Crie o arquivo backend/.env:
 
 PORT=4000
-# complete o resto!
+# complete o resto! a url está no .txt enviado pelo Canvas!
 MONGODB_URL=mongodb+srv://
 ```
 
 📂 Configuração do Frontend (.env.development)
 ```
-# Crie o arquivo frontend/.env.development:
+# Crie o arquivo frontend/.env.development se precisar:
 
 VITE_API_URL=http://localhost:4000
 ```
