@@ -191,7 +191,7 @@ Configure as credenciais antes de rodar.
 # Crie o arquivo backend/.env:
 
 PORT=4000
-
+# complete o resto!
 MONGODB_URL=mongodb+srv://
 ```
 
