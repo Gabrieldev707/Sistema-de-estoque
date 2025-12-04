@@ -3,15 +3,18 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
+const errorMiddleware = require('./middlewares/errorMiddleware');
 const produtoRoutes = require('./routes/produtoRoutes');
 const fornecedorRoutes = require('./routes/fornecedorRoutes');
-const errorMiddleware = require('./middlewares/errorMiddleware');
+
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 // 5. Configura os Middlewares
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
@@ -35,7 +38,9 @@ mongoose.connect(MONGODB_URL)
 //  Configura as Rotas
 app.use('/api', produtoRoutes);
 app.use('/api', fornecedorRoutes);
+app.use(require('./middlewares/notFoundMiddleware'));
 
+app.use(errorMiddleware);
 app.use(errorMiddleware);
 
 app.listen(PORT, () => {
